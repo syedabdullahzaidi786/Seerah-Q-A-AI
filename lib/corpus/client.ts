@@ -68,38 +68,40 @@ function normalize(raw: unknown, type: CorpusType): CorpusEntry | null {
   if (id == null) return null
 
   // Prefer English locale content; fall back to Urdu
+  const enLocale = (r?.en ?? {}) as Record<string, unknown>
+  const urLocale = (r?.ur ?? {}) as Record<string, unknown>
   const locale = (r?.en ?? r?.ur ?? {}) as Record<string, unknown>
 
   // Timeline: join all content_text items
   const timelineText = Array.isArray(locale?.content)
-    ? (locale.content as Array<Record<string, unknown>>)
-        .map((item) =>
-          [item?.title, item?.content_text].filter(Boolean).join(': '),
-        )
-        .join('\n\n')
+    ? (locale.content as Array<Record<string, unknown>>).map((item) => [item?.title, item?.content_text].filter(Boolean).join(': ')).join('\n\n')
+    : ''
+
+  const urTimelineText = Array.isArray(urLocale?.content)
+    ? (urLocale.content as Array<Record<string, unknown>>).map((item) => [item?.title, item?.content_text].filter(Boolean).join(': ')).join('\n\n')
     : ''
 
   // Shamail: hadeesTarjama + bulleted points
-  const shamailText = [
-    locale?.hadeesTarjama,
-    ...(Array.isArray(locale?.points) ? (locale.points as unknown[]) : []),
-  ]
-    .filter(Boolean)
-    .join('\n\n')
+  const shamailText = [locale?.hadeesTarjama, ...(Array.isArray(locale?.points) ? (locale.points as unknown[]) : [])].filter(Boolean).join('\n\n')
+  const urShamailText = [urLocale?.hadeesTarjama, ...(Array.isArray(urLocale?.points) ? (urLocale.points as unknown[]) : [])].filter(Boolean).join('\n\n')
 
   const text =
     (r?.text as string) ||
     (r?.content as string) ||
     timelineText ||
     shamailText ||
-    localized(r?.description) ||
+    (enLocale?.description as string) ||
+    (locale?.description as string) ||
     (r?.body as string) ||
     (r?.narrative as string)
+
+  const urText = urTimelineText || urShamailText || (urLocale?.description as string) || (r?.ur_text as string) || undefined
 
   if (!text) return null
 
   // hikayat sourced from hadeesHawala (hadith reference footnote)
   const hikayat = localized(locale?.hadeesHawala) || undefined
+  const urHikayat = (urLocale?.hadeesHawala as string) || undefined
 
   return {
     type,
@@ -109,11 +111,14 @@ function normalize(raw: unknown, type: CorpusType): CorpusEntry | null {
       localized(r?.title) ||
       `${type === 'shamail' ? 'Shamail' : 'Timeline'} entry ${id}`,
     text: String(text),
+    urTitle: (urLocale?.title as string) || undefined,
+    urText,
     category:
       localized((r?.category as Record<string, unknown>)?.name) ||
       (r?.category_name as string),
     section: (locale?.section as string) || (r?.section as string),
     hikayat,
+    urHikayat,
     raw: r,
   }
 }

@@ -74,14 +74,17 @@ function getCloudflareConfig():
 function buildCitations(
   entries: Awaited<ReturnType<typeof searchCorpus>>,
 ): Citation[] {
-  return entries.map(({ type, id, title, category, section, text, hikayat }) => ({
+  return entries.map(({ type, id, title, urTitle, category, section, text, urText, hikayat, urHikayat }) => ({
     type,
     id,
     title,
+    urTitle,
     category,
     section,
     text,
+    urText,
     hikayat,
+    urHikayat,
   }))
 }
 
@@ -157,7 +160,7 @@ export async function POST(request: Request) {
     const sourceText = entries
       .map(
         (e, i) =>
-          `[SOURCE ${i + 1} | type:${e.type} | id:${e.id} | title:${e.title}]\n${e.text}`,
+          `[SOURCE ${i + 1} | type:${e.type} | id:${e.id} | title:${e.title}]\nENGLISH: ${e.text}\nURDU: ${e.urText || ''}`,
       )
       .join('\n\n')
 
