@@ -6,6 +6,8 @@ Email: syedabdullahzaidi786@gmail.com
 
 <div align="center">
 
+<img src="../public/logo.webp" alt="Seerah Q&A AI Logo" width="130" />
+
 # 🤖 AI - Seerah Content Bot
 
 ### Corpus-Grounded Seerah Q&A Assistant
@@ -464,7 +466,7 @@ What is the Islamic ruling on listening to music?
 ### Expected / Observed
 
 ```text
-I’m not able to provide fatwas or religious rulings.
+I'm not able to provide fatwas or religious rulings.
 Please consult a qualified alim/scholar for guidance.
 ```
 
@@ -743,72 +745,68 @@ The role brief specifies:
 Icon Key: robot
 ```
 
-The final interface should therefore use a recognizable robot/bot icon.
+The final interface uses a recognizable robot/bot icon alongside the Seerah logo.
 
 ---
 
 # 📸 16. Screenshot Documentation
 
-Recommended repository structure:
+<div align="center">
 
-```text
-docs/
-└── screenshots/
-    ├── 01-main-interface.png
-    ├── 02-in-corpus-answer.png
-    ├── 03-source-citations.png
-    ├── 04-out-of-corpus-fallback.png
-    ├── 05-fatwa-refusal.png
-    ├── 06-urdu-query.png
-    └── 07-mobile-responsive.png
-```
+<img src="../public/logo.webp" alt="Seerah Q&A AI" width="80" />
+
+</div>
 
 ## Screenshot 01 — Main Interface
 
-Should demonstrate:
+![Main Interface — Seerah Q&A AI](./image1.png)
 
-- AI - Seerah Content Bot title
-- Robot icon
-- Corpus-grounded status
-- Chat interface
-- Persistent disclaimer
+**Demonstrates:**
 
-## Screenshot 02 — In-Corpus Answer
+- ✅ `AI - Seerah Content Bot` title with bot icon in header
+- ✅ `Corpus grounded` status badge (top-right)
+- ✅ Seerah logo centered with "Ask about the Seerah" heading
+- ✅ Suggested prompt cards for quick start
+- ✅ Chat input composer at bottom
+- ✅ Persistent disclaimer always visible
 
-Should demonstrate:
+---
 
-- Seerah question
-- Grounded response
-- Approved source cards
+## Screenshot 02 — In-Corpus Answer with Source Cards
 
-## Screenshot 03 — Source Citations
+![In-Corpus Answer with Citations — Seerah Q&A AI](./image2.png)
 
-Should demonstrate:
+**Demonstrates:**
 
-- Source title
-- Entry ID
-- Approved source label
+- ✅ User query: *"What does the Shamail corpus say about the Prophet ﷺ?"*
+- ✅ Grounded AI response describing physical appearance, character, and practices
+- ✅ Shamail source card: `Mention of the Seal of Prophethood of Nabiyyullah ﷺ`
+- ✅ Entry ID: `#67516CD9D2C9EB00202FC5B0`
+- ✅ REF: `شمائل ترمزی (حدیث 16)`
+- ✅ Corpus-grounded status confirmed in header
+- ✅ Persistent disclaimer visible at bottom
 
-## Screenshot 04 — Out-of-Corpus
+---
 
-Should demonstrate the safe fallback.
+## Screenshot 03 — Source Detail Panel
 
-## Screenshot 05 — Fatwa Safety
+![Source Detail Panel — Corpus Entry](./image3.png)
 
-Should demonstrate:
+**Demonstrates:**
 
-- Refusal
-- Alim/scholar redirect
+- ✅ Full corpus entry opened in detail panel
+- ✅ Corpus badge: `SHAMAIL` with category `Characteristics of the Prophet ﷺ`
+- ✅ Entry title: *"Mention of the Seal of Prophethood of Nabiyyullah ﷺ"*
+- ✅ Urdu title: *"مصطفی کریم ﷺ کی مہر نبوت کا ذکر"*
+- ✅ Entry ID: `#67516cd9d2c9eb00202fc5b0`
+- ✅ REF: `شمائل ترمزی (حدیث 16)`
+- ✅ Full English text of the corpus entry
+- ✅ Full Urdu text of the corpus entry
+- ✅ Bilingual (English + Urdu) content display
 
-## Screenshot 06 — Urdu
+---
 
-Should demonstrate Urdu question handling.
-
-## Screenshot 07 — Mobile
-
-Should demonstrate responsive layout and disclaimer visibility.
-
-> ⚠️ Never include screenshots containing API keys, tokens, passwords or other secrets.
+> ⚠️ **Security Note:** Screenshots must never contain API keys, tokens, passwords or other secrets.
 
 ---
 
@@ -905,7 +903,7 @@ The application should show a safe error instead of generating an unsupported an
 Example:
 
 ```text
-I’m unable to retrieve the approved Seerah sources right now.
+I'm unable to retrieve the approved Seerah sources right now.
 Please try again later.
 ```
 
@@ -1041,28 +1039,27 @@ The prototype is considered ready when all of the following are satisfied:
 
 # 📦 25. Project Deliverables
 
-The final submission should contain:
+The final submission contains:
 
 ```text
 Project/
 │
-├── README.md
-├── documentation.md
+├── README.md                  ← Quick-start & overview
+├── .env.example               ← Environment variable template
 │
 ├── docs/
-│   └── screenshots/
-│       ├── 01-main-interface.png
-│       ├── 02-in-corpus-answer.png
-│       ├── 03-source-citations.png
-│       ├── 04-out-of-corpus-fallback.png
-│       ├── 05-fatwa-refusal.png
-│       ├── 06-urdu-query.png
-│       └── 07-mobile-responsive.png
+│   ├── documentation.md       ← This file (full technical docs)
+│   ├── image1.png             ← Screenshot: Main interface
+│   ├── image2.png             ← Screenshot: In-corpus answer + citations
+│   └── image3.png             ← Screenshot: Source detail panel
 │
-└── source-code/
+├── public/
+│   └── logo.webp              ← Project logo
+│
+└── app/                       ← Next.js App Router source code
+    └── api/
+        └── chat/              ← Chat API route (corpus grounding + AI)
 ```
-
-> The exact source-code structure depends on the selected implementation.
 
 ---
 
@@ -1076,24 +1073,14 @@ https://api.islamicdesk.com/api/seerathon/corpus
 
 ## GitHub Repository
 
-Replace with the final repository URL:
-
 ```text
-[GitHub Repository URL]
-```
-
-## Live Demo
-
-Replace with the deployed prototype URL:
-
-```text
-[Live Demo URL]
+https://github.com/syedabdullahzaidi786/Seerah-Q-A-AI
 ```
 
 ## Documentation
 
 ```text
-documentation.md
+docs/documentation.md
 ```
 
 ---
@@ -1112,7 +1099,7 @@ This documentation records the implemented prototype's:
 - Multilingual testing
 - QA results
 - UI/UX
-- Screenshot plan
+- Screenshots
 - Security
 - Error handling
 - Limitations
@@ -1134,10 +1121,11 @@ The project is designed around **source verification, corpus grounding, safety a
 
 ---
 
+<div align="center">
+
+<img src="../public/logo.webp" alt="Seerah Q&A AI" width="70" />
+
 **Project Status:** 🟢 **Demo-Ready Prototype**
 
-**Role:** `ai_bot`
-
-**Platform:** Web Chat
-
-**Knowledge Boundary:** Approved Shamail + Timeline Corpus
+**Role:** `ai_bot` &nbsp;·&nbsp; **Platform:** Web Chat &nbsp;·&nbsp; **Knowledge Boundary:** Approved Shamail + Timeline Corpus
+</div>
